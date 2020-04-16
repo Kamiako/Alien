@@ -6,12 +6,13 @@ class Ship(Sprite):
 
 	def __init__(self, ai_game):
 		"""Initialize the ship and set its starting postion."""
+		super().__init__()
 		self.screen = ai_game.screen
 		self.settings = ai_game.settings
 		self.screen_rect = ai_game.screen.get_rect()
 
 		# Load the ship image and get its rect.
-		self.image = pygame.image.load('images/newship.png')
+		self.image = pygame.image.load('images/alienblaster.png')
 		self.rect = self.image.get_rect()
 
 		# Start each new ship at the bottom center of the screen.
