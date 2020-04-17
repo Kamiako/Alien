@@ -95,14 +95,15 @@ class AlienInvasion:
 
 	def _check_keydown_events(self, event):
 		"""Respond to keypresses."""
-		if event.key == pygame.K_RIGHT:
-			self.ship.moving_right = True
-		elif event.key == pygame.K_LEFT:
-			self.ship.moving_left = True
-		elif event.key == pygame.K_q:
-			sys.exit()
-		elif event.key == pygame.K_SPACE:
-			self._fire_bullet()
+		if self.stats.game_active:
+			if event.key == pygame.K_RIGHT:
+				self.ship.moving_right = True
+			elif event.key == pygame.K_LEFT:
+				self.ship.moving_left = True
+			elif event.key == pygame.K_q:
+				sys.exit()
+			elif event.key == pygame.K_SPACE:
+				self._fire_bullet()
 	
 	def _check_keyup_events(self, event):
 		"""Respond to key releases."""
@@ -142,7 +143,6 @@ class AlienInvasion:
 			self.sb.prep_score()
 			self.sb.check_high_score()
 			se.alien_sound.play()
-			
 		if not self.aliens:
 			# Destroy existing bullets and create new fleet.
 			self.bullets.empty()
@@ -197,7 +197,9 @@ class AlienInvasion:
 
 		else:
 			self.stats.game_active = False
+			self.play_button = Button(self, "Restart")
 			pygame.mouse.set_visible(True)
+
 
 	def _create_fleet(self):
 		"""Create the fleet of aliens."""
